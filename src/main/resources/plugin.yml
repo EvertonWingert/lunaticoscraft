@@ -1,0 +1,5 @@
+name: Lunaticoscraft
+version: '${project.version}'
+main: lunaticoscraft.lunaticoscraft.Lunaticoscraft
+api-version: 1.19
+authors: [ evertonwingert ]
