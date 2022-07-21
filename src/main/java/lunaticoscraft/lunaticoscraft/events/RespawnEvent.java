@@ -15,10 +15,14 @@ public class RespawnEvent implements Listener {
     public void onPlayerRespawn(PlayerRespawnEvent event)  {
 
         Bukkit.getScheduler().runTaskLater(Lunaticoscraft.getInstance(), task -> {
+            /*
+                TODO: read file player name and set effect
+           */
+
             Player p = event.getPlayer();
             BaseRace race = new Dweller(p);
-            race.setBuff();
-            race.setDebuff();
+            race.setEffects();
+
         }, 5L);
     }
 }

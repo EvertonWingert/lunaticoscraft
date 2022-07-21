@@ -14,10 +14,14 @@ public class JoinEvent implements Listener {
     public void onEnter(PlayerJoinEvent event) {
         Player p = event.getPlayer();
 
-        BaseRace race = new Dweller(p);
+          /*
+                TODO: read file player name and set effect
+           */
 
-        race.setBuff();
-        race.setDebuff();
+//        BaseRace race = new Dweller(p);
+//
+//        race.setBuff();
+//        race.setDebuff();
 
         Bukkit.getLogger().info("Entrou: " + p);
     }

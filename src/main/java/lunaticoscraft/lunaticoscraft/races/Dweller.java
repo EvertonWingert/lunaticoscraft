@@ -6,6 +6,11 @@ import org.bukkit.potion.PotionEffectType;
 
 public class Dweller implements BaseRace {
 
+    String name = "Dweller";
+
+    public String getName() {
+        return name;
+    }
     private Player player;
 
     public Dweller(Player p) {
@@ -13,13 +18,16 @@ public class Dweller implements BaseRace {
     }
 
     @Override
-    public void setBuff() {
+    public void setEffects() {
         this.player.addPotionEffect(new org.bukkit.potion.PotionEffect(PotionEffectType.FAST_DIGGING, Integer.MAX_VALUE, 4));
-
-    }
-
-    @Override
-    public void setDebuff() {
         this.player.addPotionEffect(new org.bukkit.potion.PotionEffect(PotionEffectType.HUNGER, Integer.MAX_VALUE, 1));
+
     }
+    @Override
+    public void clearEffects() {
+        this.player.removePotionEffect(PotionEffectType.FAST_DIGGING);
+        this.player.removePotionEffect(PotionEffectType.HUNGER);
+    }
+
+
 }

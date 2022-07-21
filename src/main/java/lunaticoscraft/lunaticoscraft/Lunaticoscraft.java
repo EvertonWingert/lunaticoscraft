@@ -1,5 +1,6 @@
 package lunaticoscraft.lunaticoscraft;
 
+import lunaticoscraft.lunaticoscraft.commands.RaceCommand;
 import lunaticoscraft.lunaticoscraft.events.JoinEvent;
 import lunaticoscraft.lunaticoscraft.events.RespawnEvent;
 import org.bukkit.Bukkit;
@@ -24,8 +25,7 @@ public final class Lunaticoscraft extends JavaPlugin {
 
         Bukkit.getPluginManager().registerEvents(new RespawnEvent(), this);
         Bukkit.getPluginManager().registerEvents(new JoinEvent(), this);
-
-
+        getCommand("race").setExecutor(new RaceCommand());
     }
 
     @Override

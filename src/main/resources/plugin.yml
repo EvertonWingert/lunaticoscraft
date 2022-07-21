@@ -3,3 +3,7 @@ version: '${project.version}'
 main: lunaticoscraft.lunaticoscraft.Lunaticoscraft
 api-version: 1.19
 authors: [ evertonwingert ]
+commands:
+  race:
+    description: Set a race
+    usage: /race <race>
