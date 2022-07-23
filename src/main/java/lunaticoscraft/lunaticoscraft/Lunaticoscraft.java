@@ -1,6 +1,8 @@
 package lunaticoscraft.lunaticoscraft;
 
 import lunaticoscraft.lunaticoscraft.commands.RaceCommand;
+import lunaticoscraft.lunaticoscraft.database.ConnectionDB;
+import lunaticoscraft.lunaticoscraft.database.migrations.CreatePlayerMigration;
 import lunaticoscraft.lunaticoscraft.events.JoinEvent;
 import lunaticoscraft.lunaticoscraft.events.RespawnEvent;
 import org.bukkit.Bukkit;
@@ -20,6 +22,11 @@ public final class Lunaticoscraft extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
+        //Database
+        ConnectionDB.openConnectionSqlite();
+        CreatePlayerMigration.execute();
+
         // Plugin startup logic
         Bukkit.getLogger().info("Plugin iniciado");
 

@@ -1,60 +1,41 @@
 package lunaticoscraft.lunaticoscraft.commands;
 
+import lunaticoscraft.lunaticoscraft.database.querys.PlayerQueries;
+import lunaticoscraft.lunaticoscraft.helpers.RaceHelper;
 import lunaticoscraft.lunaticoscraft.interfaces.BaseRace;
-import lunaticoscraft.lunaticoscraft.races.Automech;
-import lunaticoscraft.lunaticoscraft.races.Dweller;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.function.Supplier;
-
 public class RaceCommand  implements CommandExecutor {
 
-    public static Map<String, String> players = new HashMap<>();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!(sender instanceof Player)) {
-            return true;
-        }
-
+        if (!(sender instanceof Player)) return true;
         Player p = (Player) sender;
 
         if (command.getName().equalsIgnoreCase("race")) {
 
+            if(args[0] == null) return true;
+
             String raceName = args[0];
 
-            if(players.containsKey(p.getName())){
-                BaseRace oldRace = getRace(raceName, p);
-                oldRace.clearEffects();
-                players.remove(p.getName());
-            }
+            Bukkit.getLogger().info(args[0]);
 
-            BaseRace race = getRace(raceName, p);
+            BaseRace race = RaceHelper.getRace(raceName, p);
             if(race == null) return true;
 
             race.setEffects();
-            players.put(p.getName(), race.getName());
+
+            //Salva player no banco de dados
+            PlayerQueries playerQueries = new PlayerQueries();
+            playerQueries.save(p.getName(), race.getName());
         }
         return true;
     }
 
-    BaseRace getRace(String raceName, Player p){
-        if(Objects.equals(raceName, "Automech")){
-            return new Automech(p);
-        }
-
-        if(Objects.equals(raceName, "Dweller")){
-            return new Dweller(p);
-        }
-
-        return null;
-    }
 }
 

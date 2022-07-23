@@ -11,6 +11,7 @@ public class Dweller implements BaseRace {
     public String getName() {
         return name;
     }
+
     private Player player;
 
     public Dweller(Player p) {
@@ -28,6 +29,5 @@ public class Dweller implements BaseRace {
         this.player.removePotionEffect(PotionEffectType.FAST_DIGGING);
         this.player.removePotionEffect(PotionEffectType.HUNGER);
     }
-
 
 }
